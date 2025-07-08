@@ -31,7 +31,7 @@ public class DesignationsView extends HttpServlet
 
 			pw.println("<!-- header starts here -->");
 			pw.println("<div style='margin:5px;width:90hw;height:auto;border:1px solid black'>");
-			pw.println("<img src='/WebApplication1/images/logo.png' style='float:left;width:7hw;height:7vh'>");
+			pw.println("<a href='/WebApplication1/index.html'><img src='/WebApplication1/images/logo.png' style='float:left;width:7hw;height:7vh'></a>");
 			pw.println("<div style='margin-top:9px;margin-bottom:9px;font-size:20pt'>HR Application</div>");
 			pw.println("</div>");
 			pw.println("<!-- header ends here-->");
