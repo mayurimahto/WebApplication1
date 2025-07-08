@@ -42,7 +42,8 @@ public class DesignationsView extends HttpServlet
 			pw.println("<!--left panel starts here -->");
 			pw.println("<div style='height:65vh;margin:5px;float:left;padding:5px;border:1px solid black'>");
 			pw.println("<b>Designations</b></br>");
-			pw.println("<a href='WebApplication1/employeesView'>Employees</a>");
+			pw.println("<a href='/WebApplication1/employeesView'>Employees</a></br>");
+			pw.println("<a href='/WebApplication1/index.html'>Home</a>");
 			pw.println("</div>");
 			pw.println("<!--left panel ends here -->");
 
@@ -53,7 +54,7 @@ public class DesignationsView extends HttpServlet
 			pw.println("<thead>");
 			pw.println("<tr>");
 			pw.println("<th colspan='4' style='text-align:right;padding:5px'>");
-			pw.println("<a href='WebApplication1/AddDesignation.html'>Add new designation</a>");
+			pw.println("<a href='/WebApplication1/AddDesignation.html'>Add new designation</a>");
 			pw.println("</th>");
 			pw.println("</tr>");
 			pw.println("<tr>");
@@ -80,7 +81,7 @@ public class DesignationsView extends HttpServlet
 			pw.println("<tr>");
 			pw.println("<td style='text-align:right'>"+sno+"</td>");
 			pw.println("<td>"+title+"</td>");
-			pw.println("<td style='text-align:center'><a href='WebApplication1/editDesignation?code="+code+"'>Edit</a></td>");
+			pw.println("<td style='text-align:center'><a href='/WebApplication1/editDesignation?code="+code+"'>Edit</a></td>");
 			pw.println("<td style='text-align:center'><a href='/WebApplication1/confirmDeleteDesignation?code="+code+"'>Delete</a></td>");
 			pw.println("</tr>");
 			}

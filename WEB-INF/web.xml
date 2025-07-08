@@ -36,6 +36,6 @@
 
 <servlet-mapping>
 	<servlet-name>DesignationsView</servlet-name>
-	<url-pattern>/WebApplication1/designationsView</url-pattern>
+	<url-pattern>/designationsView</url-pattern>
 </servlet-mapping>   
 </web-app>
