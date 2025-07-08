@@ -27,5 +27,15 @@
     </description>
     <display-name>HR Application</display-name>
 
-    <request-character-encoding>UTF-8</request-character-encoding>    
+    <request-character-encoding>UTF-8</request-character-encoding> 
+
+<servlet>
+	<servlet-name>DesignationsView</servlet-name>
+	<servlet-class>com.web.application.hr.servlets.DesignationsView</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>DesignationsView</servlet-name>
+	<url-pattern>/WebApplication1/designationsView</url-pattern>
+</servlet-mapping>   
 </web-app>
