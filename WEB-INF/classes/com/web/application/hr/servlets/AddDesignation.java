@@ -5,7 +5,7 @@ import jakarta.servlet.http.*;
 import java.sql.*;
 import java.io.*;
 
-class AddDesignation extends HttpServlet
+public class AddDesignation extends HttpServlet
 {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 	{
@@ -54,12 +54,20 @@ class AddDesignation extends HttpServlet
 
 			pw.println("<h3>Notification</h3>");
 			pw.println("Designation added<br><br>");
+			pw.println("<table>");
+			pw.println("<tr>");
+			pw.println("<td>");
 			pw.println("<form action='/WebApplication1/AddDesignation.html'>");
 			pw.println("<button type='submit'>Yes</button>");
 			pw.println("</form>");
-			pw.println("<form action='/WebApplication1/index.html'>");
+			pw.println("</td>");
+			pw.println("<td>");
+			pw.println("<form action='/WebApplication1/designationsView'>");
 			pw.println("<button type='submit'>No</button>");
 			pw.println("</form>");
+			pw.println("</td>");
+			pw.println("</tr>");
+			pw.println("</table>");
 
 			pw.println("</div>");
 			pw.println("<!-- right panel ends here -->");

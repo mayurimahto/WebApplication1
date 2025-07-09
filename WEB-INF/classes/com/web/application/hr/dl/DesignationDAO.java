@@ -21,10 +21,11 @@ public class DesignationDAO
 			}
 			resultSet.close();
 			preparedStatement.close();
-			preparedStatement=connection.prepareStatement("insert into designation(name) values(?)", Statement.RETURN_GENERATED_KEYS);
+			preparedStatement=connection.prepareStatement("insert into designation(title) values(?)", Statement.RETURN_GENERATED_KEYS);
 			preparedStatement.setString(1,designation.getTitle());
 			preparedStatement.executeUpdate();
 			resultSet=preparedStatement.getGeneratedKeys();
+			resultSet.next();
 			int code=resultSet.getInt(1);
 			resultSet.close();
 			preparedStatement.close();
