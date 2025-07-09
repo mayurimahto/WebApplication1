@@ -4,6 +4,38 @@ import java.util.*;
 
 public class DesignationDAO
 {
+	public void add(DesignationDTO designation) throws DAOException
+	{
+		try
+		{
+			Connection connection=DAOConnection.getConnection();
+			PreparedStatement preparedStatement;
+			preparedStatement=connection.prepareStatement("select * from designation where title=?");
+			preparedStatement.setString(1,designation.getTitle());
+			ResultSet resultSet=preparedStatement.executeQuery();
+			if(resultSet.next()==true)
+			{
+				resultSet.close();
+				preparedStatement.close();
+				throw new DAOException("Designation : "+designation.getTitle()+" exists.");	
+			}
+			resultSet.close();
+			preparedStatement.close();
+			preparedStatement=connection.prepareStatement("insert into designation(name) values(?)", Statement.RETURN_GENERATED_KEYS);
+			preparedStatement.setString(1,designation.getTitle());
+			preparedStatement.executeUpdate();
+			resultSet=preparedStatement.getGeneratedKeys();
+			int code=resultSet.getInt(1);
+			resultSet.close();
+			preparedStatement.close();
+			connection.close();
+			designation.setCode(code);
+		}
+		catch(SQLException sqlException)
+		{
+			throw new DAOException(sqlException.getMessage()); //remove after testing
+		}
+	}
 	public List<DesignationDTO>getAll() throws DAOException
 	{
 		List<DesignationDTO> designations;
