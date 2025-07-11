@@ -122,6 +122,8 @@ public class DesignationDAO
 				throw new DAOException("Invalid designation code : "+code);
 			}
 			// This condition when title matches but code is different
+			resultSet.close();
+			preparedStatement.close();
 			preparedStatement=connection.prepareStatement("select * from designation where title=? and code!=?");
 			preparedStatement.setString(1,title);
 			preparedStatement.setInt(2,code);
@@ -135,7 +137,7 @@ public class DesignationDAO
 			}
 			resultSet.close();
 			preparedStatement.close();
-			preparedStatement=connection.prepareStatement("update designation set title=? where code=");
+			preparedStatement=connection.prepareStatement("update designation set title=? where code=?");
 			preparedStatement.setString(1,title);
 			preparedStatement.setInt(2,code);
 			preparedStatement.executeUpdate();
