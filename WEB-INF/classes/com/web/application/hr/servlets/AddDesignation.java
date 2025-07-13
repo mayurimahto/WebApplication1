@@ -53,7 +53,7 @@ public class AddDesignation extends HttpServlet
 		
 
 			pw.println("<h3>Notification</h3>");
-			pw.println("Designation added<br><br>");
+			pw.println("Designation added<br>Add more designations?<br>");
 			pw.println("<table>");
 			pw.println("<tr>");
 			pw.println("<td>");
