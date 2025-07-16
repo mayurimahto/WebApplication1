@@ -154,9 +154,6 @@ public class AddDesignation extends HttpServlet
 			pw.println("<button type='button' onclick='cancelAddition()'>Cancel</button>");
 			pw.println("</form>");
 
-			pw.println("<form action='/WebApplication1/designationsView' id='cancelAdditionForm'>");
-			pw.println("</form>");
-
 			pw.println("</div>");
 			pw.println("<!-- right panel ends here -->");
 
@@ -169,6 +166,10 @@ public class AddDesignation extends HttpServlet
 
 			pw.println("</div>"); 
 			pw.println("<!--Main container ends here-->");
+
+                        pw.println("<form action='/WebApplication1/designationsView' id='cancelAdditionForm'>");
+			pw.println("</form>");
+
 			pw.println("</body>");
 			pw.println("</html>");
 		}
