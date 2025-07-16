@@ -15,6 +15,11 @@
 	}
 	return true;
 	}
+
+	function cancelAddition()
+	{
+	document.getElementById('cancelAdditionForm').submit();
+	}
 	</script>
 </head>
 <body>
@@ -49,6 +54,7 @@
 	<input type='text' id='title' name='title' maxLength='35' size='36'>
 	<span id='titleErrorSection' style='color:red'></span><br>
 	<button type='submit'>Add</button>
+	<button type='Button' onclick='cancelAddition()'>Cancel</button>
 	</form>
 
 	</div>
@@ -63,5 +69,8 @@
 
 	</div> 
 	<!--Main container ends here-->
+
+	<form action='/WebApplication1/designationsView' id='cancelAdditionForm'>
+	</form>
 </body>
 </html>
