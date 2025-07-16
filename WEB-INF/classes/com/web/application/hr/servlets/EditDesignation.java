@@ -46,6 +46,13 @@ public class EditDesignation extends HttpServlet
 				pw.println("}");
 				pw.println("return true;");
 				pw.println("}");
+
+
+				pw.println("function cancelEditing()");
+				pw.println("{");
+				pw.println("document.getElementById('cancelEditingForm').submit();");
+				pw.println("}");
+
 				pw.println("</script>");
 				pw.println("</head>");
 				pw.println("<body>");
@@ -84,6 +91,9 @@ public class EditDesignation extends HttpServlet
 				pw.println("<span id='titleErrorSection' style='color:red'></span><br>");
 
 				pw.println("<button type='submit'>Update</button>");
+
+				pw.println("<button type='button' onclick='cancelEditing()'>Cancel</button>");
+
 				pw.println("</form>");
 
 				pw.println("</div>");
@@ -98,6 +108,10 @@ public class EditDesignation extends HttpServlet
 
 				pw.println("</div>");
 				pw.println("<!--Main container ends here-->");
+
+				pw.println("<form id='cancelEditingForm' action='/WebApplication1/designationsView'>");
+				pw.println("</form>");
+
 				pw.println("</body>");
 				pw.println("</html>");
 				pw.println("}");
