@@ -146,6 +146,8 @@ public class EditDesignation extends HttpServlet
 	{
 		try
 		{
+			//code from DesignationView.java
+
 			DesignationDAO designationDAO;
 			designationDAO=new DesignationDAO();
 			List<DesignationDTO> designations;
@@ -153,8 +155,6 @@ public class EditDesignation extends HttpServlet
 			PrintWriter pw=response.getWriter();
 			response.setContentType("text/html");
 
-
-			//lot of code goes over her from DesignationViewTemplate.html
 			pw.println("<!DOCTYPE HTML>");
 			pw.println("<html>");
 			pw.println("<head>");
