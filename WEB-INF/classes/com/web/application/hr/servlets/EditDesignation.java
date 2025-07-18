@@ -127,8 +127,6 @@ public class EditDesignation extends HttpServlet
 				//send back view page
 				// when getByCode is called and code is not found
 				//designationsView
-				
-
 				sendBackView(response);
 				return;
 			}

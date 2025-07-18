@@ -154,6 +154,8 @@ public class UpdateDesignation extends HttpServlet
 				pw.println("<div style='height:65vh;margin-left:105px;margin-right:5px;margin-bottom:5px;margin-top:5px;padding:5px;border:1px solid black'>");
 				pw.println("<h2>Designation (Edit Module)</h2>");
 
+				pw.println("<div style='color:red'>"+daoException.getMessage()+"</div>");
+
 				pw.println("<form method='post' action='/WebApplication1/updateDesignation' onsubmit='return validateForm(this)'>");
 				pw.println("Designation");
 
