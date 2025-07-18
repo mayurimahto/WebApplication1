@@ -12,7 +12,7 @@ A simple and functional **HR Management System** built with **Java**, **Servlets
 - 🔹 Clean and modular servlet architecture
 - 🔹 Persistent data storage using **MySQL**
 - 🔹 Database interaction using **JDBC**
-- 🔹 Frontend built using **HTML/CSS**
+- 🔹 Frontend built using **HTML/CSS/JavaScript**
 
 ---
 
@@ -20,7 +20,7 @@ A simple and functional **HR Management System** built with **Java**, **Servlets
 
 | Layer        | Technology      |
 |--------------|-----------------|
-| Frontend     | HTML, CSS       |
+| Frontend     | HTML, CSS, JavaScript       |
 | Backend      | Java, Servlets  |
 | Database     | MySQL           |
 | Connectivity | JDBC            |
