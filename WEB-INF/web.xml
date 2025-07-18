@@ -58,4 +58,14 @@
 	<servlet-name>EditDesignation</servlet-name>
 	<url-pattern>/editDesignation</url-pattern>
 </servlet-mapping>
+
+<servlet>
+	<servlet-name>UpdateDesignation</servlet-name>
+	<servlet-class>com.web.application.hr.servlets.UpdateDesignation</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>UpdateDesignation</servlet-name>
+	<url-pattern>/updateDesignation</url-pattern>
+</servlet-mapping>
 </web-app>
