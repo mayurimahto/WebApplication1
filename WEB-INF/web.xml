@@ -71,7 +71,7 @@
 
 <servlet>
 	<servlet-name>ConfirmDeleteDesignation</servlet-name>
-	<servlet-class>com.web.application.hr.servlets.ConfirmDeleteDesignationDesignation</servlet-class>
+	<servlet-class>com.web.application.hr.servlets.ConfirmDeleteDesignation</servlet-class>
 </servlet>
 
 <servlet-mapping>
