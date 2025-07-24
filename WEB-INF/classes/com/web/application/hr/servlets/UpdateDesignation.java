@@ -98,7 +98,7 @@ public class UpdateDesignation extends HttpServlet
 			//new code here of update
 			//send back the form to update with error message
 			//for example the title that we want to update is already existing in the db
-			//copying code of EditDesignation.java
+			//copying code of EditDesignation.java with minor change
 
 			pw.println("<!DOCTYPE HTML>");
 				pw.println("<html>");
