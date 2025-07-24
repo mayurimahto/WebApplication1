@@ -87,6 +87,7 @@ public class DeleteDesignation extends HttpServlet
 		{
 			//couldnt fetch the code(example it got deleted already by someone else before we could)
 			sendBackView(response);
+			return;
 			
 		}
 		catch(Exception exception)
