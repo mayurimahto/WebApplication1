@@ -149,4 +149,35 @@ public class DesignationDAO
 			throw new DAOException(exception.getMessage());
 		}
 	}
+
+	public void deleteByCode(int code) throws DAOException
+	{
+		try
+		{
+			Connection connection=DAOConnection.getConnection();
+			PreparedStatement preparedStatement;
+			preparedStatement=connection.prepareStatement("select * from designation where code=?");
+			preparedStatement.setInt(1,code);
+			ResultSet resultSet=preparedStatement.executeQuery();
+			if(resultSet.next()==false)
+			{
+				resultSet.close();
+				preparedStatement.close();
+				connection.close();
+				throw new DAOException("Invalid designation code : "+code);
+			}
+			resultSet.close();
+			preparedStatement.close();
+			//one check pending related to if this designation has been alloted to an employee
+			preparedStatement=connection.prepareStatement("delete from designation where code=?");
+			preparedStatement.setInt(1,code);
+			preparedStatement.executeUpdate();
+			preparedStatement.close();
+			connection.close();
+		}
+		catch(Exception exception)
+		{
+			throw new DAOException(exception.getMessage());
+		}
+	}
 }
