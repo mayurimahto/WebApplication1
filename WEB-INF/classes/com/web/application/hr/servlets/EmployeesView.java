@@ -3,6 +3,8 @@ import com.web.application.hr.dl.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import java.io.*;
+import java.util.*;
+import java.text.*;
 
 public class EmployeesView extends HttpServlet
 {
@@ -10,6 +12,7 @@ public class EmployeesView extends HttpServlet
 	{
 		try
 		{
+		List<EmployeeDTO>employees=new EmployeeDAO().getAll();
 		response.setContentType("text/html");
 		PrintWriter pw=response.getWriter();
 pw.println("");
@@ -35,34 +38,30 @@ pw.println("this.aadharCardNumber=\"\";");
 pw.println("}");
 pw.println("");
 pw.println("var employees=[];");
+
+
+SimpleDateFormat simpleDateFormat;
+simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
+int i=0;
+for(EmployeeDTO employee:employees)
+{
 pw.println("var employee=new Employee();");
-pw.println("employee.employeeId=\"A100001\";");
-pw.println("employee.name=\"Ramesh Sharma\";");
-pw.println("employee.designationCode=1;");
-pw.println("employee.designation=\"Assistant Manager\";");
-pw.println("employee.dateOfBirth=\"10/12/1996\";");
-pw.println("employee.gender=\"Male\";");
-pw.println("employee.isIndian=true;");
-pw.println("employee.basicSalary=500000;");
-pw.println("employee.panNumber=\"AMKFJJS1024035\";");
-pw.println("employee.aadharCardNumber=\"UUNJNJM2053253\";");
-pw.println("employees[0]=employee;");
-pw.println("");
-pw.println("var employee=new Employee();");
-pw.println("employee.employeeId=\"A100002\";");
-pw.println("employee.name=\"Raam Mandal\";");
-pw.println("employee.designationCode=2;");
-pw.println("employee.designation=\"Manager\";");
-pw.println("employee.dateOfBirth=\"24/05/1999\";");
-pw.println("employee.gender=\"Male\";");
-pw.println("employee.isIndian=true;");
-pw.println("employee.basicSalary=500000;");
-pw.println("employee.panNumber=\"JKNJK62635\";");
-pw.println("employee.aadharCardNumber=\"JMSNJK5256\";");
-pw.println("employees[1]=employee;");
-pw.println("//alert(employees.length);");
-pw.println("");
-pw.println("");
+pw.println("employee.employeeId=\""+employee.getEmployeeId()+"\";");
+pw.println("employee.name=\""+employee.getName()+"\";");
+pw.println("employee.designationCode="+employee.getDesignationCode()+";");
+pw.println("employee.designation=\""+employee.getDesignation()+"\";");
+pw.println("employee.dateOfBirth=\""+simpleDateFormat.format(employee.getDateOfBirth())+"\";");
+pw.println("employee.gender=\""+employee.getGender()+"\";");
+pw.println("employee.isIndian="+employee.getIsIndian()+";");
+pw.println("employee.basicSalary="+employee.getBasicSalary().toPlainString()+";");
+pw.println("employee.panNumber=\""+employee.getPANNumber()+"\";");
+pw.println("employee.aadharCardNumber=\""+employee.getAadharCardNumber()+"\";");
+pw.println("employees["+i+"]=employee;");
+i++;
+}
+
+
+
 pw.println("var selectedRow=null;");
 pw.println("function selectEmployee(row, employeeId)");
 pw.println("{");
@@ -145,22 +144,23 @@ pw.println("<th style='width:100px;text-align:center'>Delete</th>");
 pw.println("</tr>");
 pw.println("</thead>");
 pw.println("<tbody>");
-pw.println("<tr style='cursor:pointer' onclick='selectEmployee(this,\"A100001\")'>");
+
+
+
+for(EmployeeDTO employee:employees)
+{
+pw.println("<tr style='cursor:pointer' onclick='selectEmployee(this,\""+employee.getEmployeeId()+"\")'>");
 pw.println("<td style='text-align:right'>1.</td>");
-pw.println("<td>A100001</td>");
-pw.println("<td>Ramesh Sharma</td>");
-pw.println("<td>Assistant Manager</td>");
-pw.println("<td style='text-align:center'><a href='/WebApplication1/editEmployee?employeeId=A100001'>Edit</a></td>");
-pw.println("<td style='text-align:center'><a href='/WebApplication1/confirmDeleteEmployee?employeeId=A100001'>Delete</a></td>");
+pw.println("<td>"+employee.getEmployeeId()+"</td>");
+pw.println("<td>"+employee.getName()+"</td>");
+pw.println("<td>"+employee.getDesignation()+"</td>");
+pw.println("<td style='text-align:center'><a href='/WebApplication1/editEmployee?employeeId="+employee.getEmployeeId()+"'>Edit</a></td>");
+pw.println("<td style='text-align:center'><a href='/WebApplication1/confirmDeleteEmployee?employeeId="+employee.getEmployeeId()+"'>Delete</a></td>");
 pw.println("</tr>");
-pw.println("<tr style='cursor:pointer' onclick='selectEmployee(this,\"A100002\")'>");
-pw.println("<td style='text-align:right'>2.</td>");
-pw.println("<td>A100002</td>");
-pw.println("<td>Raam Mandal</td>");
-pw.println("<td>Manager</td>");
-pw.println("<td style='text-align:center'><a href='/WebApplication1/editEmployee?employeeId=A100002'>Edit</a></td>");
-pw.println("<td style='text-align:center'><a href='/WebApplication1/confirmDeleteEmployee?employeeId=A100002'>Delete</a></td>");
-pw.println("</tr>");
+}
+
+
+
 pw.println("</tbody>");
 pw.println("</table>");
 pw.println("</div>");
