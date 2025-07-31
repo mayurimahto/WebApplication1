@@ -26,7 +26,7 @@ public class PWPrintln
 			{
 				line=randomAccessFile.readLine();
 				line=line.replaceAll("\"","\\\\\"");
-				tmpRandomAccessFile.writeBytes("pw.prinltn(\""+line+"\");\r\n");
+				tmpRandomAccessFile.writeBytes("pw.println(\""+line+"\");\r\n");
 			}
 			randomAccessFile.close();
 			tmpRandomAccessFile.close();

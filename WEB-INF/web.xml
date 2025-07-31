@@ -88,4 +88,14 @@
 	<servlet-name>DeleteDesignation</servlet-name>
 	<url-pattern>/deleteDesignation</url-pattern>
 </servlet-mapping>
+
+<servlet>
+	<servlet-name>EmployeesView</servlet-name>
+	<servlet-class>com.web.application.hr.servlets.EmployeesView</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>EmployeesView</servlet-name>
+	<url-pattern>/employeesView</url-pattern>
+</servlet-mapping> 
 </web-app>
