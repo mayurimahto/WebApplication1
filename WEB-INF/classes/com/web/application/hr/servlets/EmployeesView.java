@@ -146,11 +146,12 @@ pw.println("</thead>");
 pw.println("<tbody>");
 
 
-
+int sno=0;
 for(EmployeeDTO employee:employees)
 {
+sno++;
 pw.println("<tr style='cursor:pointer' onclick='selectEmployee(this,\""+employee.getEmployeeId()+"\")'>");
-pw.println("<td style='text-align:right'>1.</td>");
+pw.println("<td style='text-align:right'>"+sno+"</td>");
 pw.println("<td>"+employee.getEmployeeId()+"</td>");
 pw.println("<td>"+employee.getName()+"</td>");
 pw.println("<td>"+employee.getDesignation()+"</td>");
