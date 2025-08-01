@@ -37,7 +37,7 @@
 	if(firstInvalidComponent==null)firstInvalidComponent=frm.dateOfBirth;
 	}
 
-	genderErrorSection=document.getElementById('genderErrorSection');	
+	var genderErrorSection=document.getElementById('genderErrorSection');	
 	genderErrorSection.innerHTML='';
 	if(frm.gender[0].checked==false && frm.gender[1].checked==false)
 	{
@@ -201,7 +201,7 @@
 
 	<tr>
 	<td>
-	Indian ?
+	Indian?
 	</td>
 	<td>
 	<input type='checkbox' name='isIndian' id='isIndian'>
@@ -213,7 +213,7 @@
 	Basic Salary
 	</td>
 	<td>
-	<input type='text' style='text-align:right'name='basicSalary' id='basicSalary' maxLenght='12' sixe='13'>
+	<input type='text' style='text-align:right'name='basicSalary' id='basicSalary' maxLength='12' size='13'>
 	<span id='basicSalaryErrorSection' style='color:red'></span>
 	</td>
 	</tr>
