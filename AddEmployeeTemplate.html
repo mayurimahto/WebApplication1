@@ -15,6 +15,7 @@
 	nameErrorSection.innerHTML='Name Required';
 	valid=false;
 	firstInvalidComponent=frm.name;
+	if(!valid)firstInvalidComponent.focus();
 	}
 
 	var designationCode=frm.designationCode.value;
@@ -25,6 +26,7 @@
 	designationCodeErrorSection.innerHTML='Select Designation';
 	valid=false;
 	if(firstInvalidComponent==null)firstInvalidComponent=frm.designationCode;
+	if(!valid)firstInvalidComponent.focus();
 	}
 
 	var dateOfBirth=frm.dateOfBirth.value;
@@ -53,6 +55,7 @@
 	basicSalaryErrorSection.innerHTML='Salary Required';
 	valid=false;
 	if(firstInvalidComponent==null)firstInvalidComponent=frm.basicSalary;
+	if(!valid)firstInvalidComponent.focus();
 	}
 	else
 	{
@@ -66,6 +69,7 @@
 	basicSalaryErrorSection.innerHTML='Invalid Basic Salary';
 	valid=false;
 	if(firstInvalidComponent==null)firstInvalidComponent=frm.basicSalary;
+	if(!valid)firstInvalidComponent.focus();
 	isBasicSalaryValid=false;
 	break;
 	}
@@ -82,6 +86,7 @@
 	basicSalaryErrorSection.innerHTML='Invalid Basic Salary';
 	valid=false;
 	if(firstInvalidComponent==null)firstInvalidComponent=frm.basicSalary;
+	if(!valid)firstInvalidComponent.focus();
 	isBasicSalaryValid=false;
 	}
 	}
