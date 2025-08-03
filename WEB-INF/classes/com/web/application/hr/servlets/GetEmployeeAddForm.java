@@ -1,3 +1,21 @@
+package com.web.application.hr.servlets;
+import com.web.application.hr.dl.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import java.io.*;
+import java.util.*;
+import java.text.*;
+
+public class GetEmployeeAddForm extends HttpServlet
+{
+	public void goGet(HttpServletRequest request, HttpServletResponse response)
+	{
+		try
+		{
+			response.setContentType("text/html");
+			PrintWriter pw=response.getWriter();
+			
+
 pw.println("<!DOCTYPE HTML>");
 pw.println("<html>");
 pw.println("<head>");
@@ -271,3 +289,24 @@ pw.println("<form action='/WebApplication1/employeesView' id='cancelAdditionForm
 pw.println("</form>");
 pw.println("</body>");
 pw.println("</html>");
+
+	
+		}
+		catch(Exception exception)
+		{
+			System.out.println(exception.getMessage());
+		}
+	}
+	
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+	{
+		try
+		{
+		doGet(request, response);
+		}
+		catch(Exception exception)
+		{
+			System.out.println(exception.getMessage());
+		}
+	}
+}
