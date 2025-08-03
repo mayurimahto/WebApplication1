@@ -312,13 +312,7 @@ pw.println("</html>");
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 	{
-		try
-		{
+		
 		doGet(request, response);
-		}
-		catch(Exception exception)
-		{
-			System.out.println(exception.getMessage());
-		}
 	}
 }
