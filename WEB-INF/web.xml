@@ -98,4 +98,14 @@
 	<servlet-name>EmployeesView</servlet-name>
 	<url-pattern>/employeesView</url-pattern>
 </servlet-mapping> 
+
+<servlet>
+	<servlet-name>GetEmployeeAddForm</servlet-name>
+	<servlet-class>com.web.application.hr.servlets.GetEmployeeAddForm</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>GetEmployeeAddForm</servlet-name>
+	<url-pattern>/getEmployeeAddForm</url-pattern>
+</servlet-mapping>
 </web-app>
