@@ -8,7 +8,7 @@ import java.text.*;
 
 public class GetEmployeeAddForm extends HttpServlet
 {
-	public void goGet(HttpServletRequest request, HttpServletResponse response)
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
 	{
 		try
 		{
