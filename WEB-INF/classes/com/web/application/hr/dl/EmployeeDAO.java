@@ -63,4 +63,67 @@ public class EmployeeDAO
 		return employees;
 	}
 
+	public void add(EmployeeDTO employee) throws DAOException
+	{
+		try
+		{
+			String panNumber=employee.getPANNumber();
+			String aadharCardNumber=employee.getAadharCardNumber();
+			
+			Connection connection=DAOConnection.getConnection();
+			PreparedStatement preparedStatement;
+			preparedStatement=connection.prepareStatement("select id from employee where pan_number=?");
+			preparedStatement.setString(1,panNumber);
+			ResultSet resultSet=preparedStatement.executeQuery();
+			if(resultSet.next())
+			{
+				resultSet.close();
+				preparedStatement.close();
+				connection.close();
+				throw new DAOException("PAN Number : "+panNumber+" exists.");
+			}
+			resultSet.close();
+			preparedStatement.close();
+
+			preparedStatement=connection.prepareStatement("select id from employee where aadhar_card_number=?");
+			preparedStatement.setString(1,aadharCardNumber);
+			resultSet=preparedStatement.executeQuery();
+			if(resultSet.next())
+			{
+				resultSet.close();
+				preparedStatement.close();
+				connection.close();
+				throw new DAOException("Aadhar Card Number : "+aadharCardNumber+" exists.");
+			}
+			resultSet.close();
+			preparedStatement.close();
+
+			preparedStatement=connection.prepareStatement("insert into employee(name, designation_code, date_of_birth, gender, is_indian, basic_salary, pan_number, aadhar_card_number) values(?,?,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
+			preparedStatement.setString(1,employee.getName());
+			preparedStatement.setInt(2,employee.getDesignationCode());
+		
+			java.util.Date dateOfBirth=employee.getDateOfBirth();
+			java.sql.Date sqlDate=new java.sql.Date(dateOfBirth.getYear(), dateOfBirth.getMonth(),dateOfBirth.getDate());
+
+			preparedStatement.setDate(3,sqlDate);
+			preparedStatement.setString(4,employee.getGender());
+			preparedStatement.setBoolean(5,employee.getIsIndian());
+			preparedStatement.setBigDecimal(6,employee.getBasicSalary());
+			preparedStatement.setString(7,panNumber);	
+			preparedStatement.setString(8,aadharCardNumber);
+		
+			preparedStatement.executeUpdate();
+			resultSet=preparedStatement.getGeneratedKeys();
+			resultSet.next();
+			int id=resultSet.getInt(1);
+			employee.setEmployeeId("A"+id);
+			resultSet.close();
+			preparedStatement.close();
+			connection.close();
+		}
+		catch(SQLException sqlException)
+		{
+			throw new DAOException(sqlException.getMessage());
+		}
+	}
 }
