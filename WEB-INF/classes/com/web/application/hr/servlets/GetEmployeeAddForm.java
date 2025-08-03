@@ -190,9 +190,21 @@ pw.println("</td>");
 pw.println("<td>");
 pw.println("<select id='designationCode' name='designationCode'>");
 pw.println("<option value='-1'>&lt;Select Designation&gt;</option>");
-pw.println("<option value='1'>Manager</option>");
-pw.println("<option value='2'>Engineer</option>");
-pw.println("<option value='3'>CEO</option>");
+
+
+DesignationDAO designationDAO;
+designationDAO=new DesignationDAO();
+List<DesignationDTO>designations=designationDAO.getAll();
+int code;
+String title;
+for(DesignationDTO designation:designations)
+{
+	code=designation.getCode();
+	title=designation.getTitle();
+	pw.println("<option value='"+code+"'>"+title+"</option>");	
+}
+
+
 pw.println("</select>");
 pw.println("<span id='designationCodeErrorSection' style='color:red'></span>");
 pw.println("</td>");
