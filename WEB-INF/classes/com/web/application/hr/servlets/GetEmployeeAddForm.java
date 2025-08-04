@@ -239,7 +239,7 @@ pw.println("<td>");
 pw.println("Indian?");
 pw.println("</td>");
 pw.println("<td>");
-pw.println("<input type='checkbox' name='isIndian' id='isIndian'>");
+pw.println("<input type='checkbox' name='isIndian' id='isIndian' value='Y'>");
 pw.println("</td>");
 pw.println("</tr>");
 pw.println("");
