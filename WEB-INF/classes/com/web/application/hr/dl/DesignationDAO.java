@@ -168,7 +168,21 @@ public class DesignationDAO
 			}
 			resultSet.close();
 			preparedStatement.close();
-			//one check pending related to if this designation has been alloted to an employee
+			
+			preparedStatement=connection.prepareStatement("select gender from employee where designation_code=?");
+			preparedStatement.setInt(1,code);
+			resultSet=preparedStatement.executeQuery();
+			if(resultSet.next())
+			{
+				resultSet.close();
+				preparedStatement.close();
+				connection.close();
+				throw new DAOException("Cannot delete designation as it has been alloted to an employee");
+			}
+			resultSet.close();
+			preparedStatement.close();
+
+
 			preparedStatement=connection.prepareStatement("delete from designation where code=?");
 			preparedStatement.setInt(1,code);
 			preparedStatement.executeUpdate();
@@ -180,4 +194,6 @@ public class DesignationDAO
 			throw new DAOException(exception.getMessage());
 		}
 	}
+
+	
 }
