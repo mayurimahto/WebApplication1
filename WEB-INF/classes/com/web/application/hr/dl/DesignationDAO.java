@@ -195,5 +195,25 @@ public class DesignationDAO
 		}
 	}
 
-	
+	public boolean designationCodeExists(int code) throws DAOException
+	{
+		boolean exists=false;
+		try
+		{
+			Connection connection=DAOConnection.getConnection();
+			PreparedStatement preparedStatement;
+			preparedStatement=connection.prepareStatement("select * from designation where code=?");
+			preparedStatement.setInt(1,code);
+			ResultSet resultSet=preparedStatement.executeQuery();
+			exists=resultSet.next();
+			resultSet.close();
+			preparedStatement.close();
+			connection.close();
+		}
+		catch(Exception exception)
+		{
+			throw new DAOException(exception.getMessage());
+		}
+		return exists;
+	}	
 }
