@@ -156,7 +156,7 @@ public class DesignationDAO
 		{
 			Connection connection=DAOConnection.getConnection();
 			PreparedStatement preparedStatement;
-			preparedStatement=connection.prepareStatement("select * from designation where code=?");
+			preparedStatement=connection.prepareStatement("select code from designation where code=?");
 			preparedStatement.setInt(1,code);
 			ResultSet resultSet=preparedStatement.executeQuery();
 			if(resultSet.next()==false)
@@ -202,7 +202,7 @@ public class DesignationDAO
 		{
 			Connection connection=DAOConnection.getConnection();
 			PreparedStatement preparedStatement;
-			preparedStatement=connection.prepareStatement("select * from designation where code=?");
+			preparedStatement=connection.prepareStatement("select code from designation where code=?");
 			preparedStatement.setInt(1,code);
 			ResultSet resultSet=preparedStatement.executeQuery();
 			exists=resultSet.next();
