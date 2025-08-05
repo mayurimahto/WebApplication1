@@ -365,7 +365,7 @@ pw.println("<input type='text' id='aadharCardNumber' name='aadharCardNumber' max
 
 if(aadharCardNumberExists==true)
 {
-pw.println("<span id='aadharCardNumberErrorSection' style='color:red'>Aadhar Card Exists</span>");
+pw.println("<span id='aadharCardNumberErrorSection' style='color:red'>Aadhar Card Number Exists</span>");
 }
 else
 {
