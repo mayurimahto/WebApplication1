@@ -170,4 +170,47 @@ public class EmployeeDAO
 		}
 		return exists;
 	}
+
+	public void deleteByEmployeeId(String employeeId) throws DAOException
+	{
+		int actualEmployeeId=0;
+		try
+		{
+			//A100005
+			//100005-100000=5
+			actualEmployeeId=Integer.parseInt(employeeId.substring(1))-100000;
+		}
+		catch(Exception exception)
+		{
+			throw new DAOException("Invalid employee id : "+employeeId);
+		}
+		try
+		{
+			Connection connection=DAOConnection.getConnection();
+			PreparedStatement preparedStatement;
+			preparedStatement=connection.prepareStatement("select gender from employee where employee_id=?");
+			preparedStatement.setInt(1,actualEmployeeId);
+			ResultSet resultSet=preparedStatement.executeQuery();
+			if(resultSet.next()==false)
+			{
+				resultSet.close();
+				preparedStatement.close();
+				connection.close();
+				throw new DAOException("Invalid employee Id : "+employeeId);
+			}
+			resultSet.close();
+			preparedStatement.close();
+
+			preparedStatement=connection.prepareStatement("delete from employee where employee_id=?");
+			preparedStatement.setInt(1,actualEmployeeId);
+			preparedStatement.executeUpdate();
+			preparedStatement.close();
+			connection.close();
+		}
+		catch(Exception exception)
+		{
+			throw new DAOException(exception.getMessage());
+		}
+	}
+
 }
