@@ -175,10 +175,7 @@ public class EmployeeDAO
 	{
 		int actualEmployeeId=0;
 		try
-		{
-			//A100005
-			//100005-100000=5
-			actualEmployeeId=Integer.parseInt(employeeId.substring(1))-100000;
+		{			actualEmployeeId=Integer.parseInt(employeeId.substring(1));
 		}
 		catch(Exception exception)
 		{
@@ -188,7 +185,7 @@ public class EmployeeDAO
 		{
 			Connection connection=DAOConnection.getConnection();
 			PreparedStatement preparedStatement;
-			preparedStatement=connection.prepareStatement("select gender from employee where employee_id=?");
+			preparedStatement=connection.prepareStatement("select gender from employee where id=?");
 			preparedStatement.setInt(1,actualEmployeeId);
 			ResultSet resultSet=preparedStatement.executeQuery();
 			if(resultSet.next()==false)
@@ -201,7 +198,7 @@ public class EmployeeDAO
 			resultSet.close();
 			preparedStatement.close();
 
-			preparedStatement=connection.prepareStatement("delete from employee where employee_id=?");
+			preparedStatement=connection.prepareStatement("delete from employee where id=?");
 			preparedStatement.setInt(1,actualEmployeeId);
 			preparedStatement.executeUpdate();
 			preparedStatement.close();
@@ -212,5 +209,83 @@ public class EmployeeDAO
 			throw new DAOException(exception.getMessage());
 		}
 	}
+
+	public EmployeeDTO getByEmployeeId(String employeeId) throws DAOException
+	{
+		EmployeeDTO employeeDTO=null;
+		int actualEmployeeId=0;
+		try
+		{
+			actualEmployeeId=Integer.parseInt(employeeId.substring(1));
+		}
+		catch(Exception exception)
+		{
+			throw new DAOException("Invalid employee id : "+employeeId);
+		}
+
+		try
+		{
+			Connection connection=DAOConnection.getConnection();
+			PreparedStatement preparedStatement;
+			preparedStatement=connection.prepareStatement("select employee.id,employee.name,employee.designation_code,designation.title,employee.date_of_birth,employee.gender,employee.is_indian,employee.basic_salary,employee.pan_number,employee.aadhar_card_number from employee inner join designation on employee.designation_code=designation.code and id=?");
+			preparedStatement.setInt(1,actualEmployeeId);
+			ResultSet resultSet;
+			resultSet=preparedStatement.executeQuery();
+			if(resultSet.next()==false)
+			{
+				//this could happen in cases when many users are on the web and delete the record that we are trying to fetch 
+				resultSet.close();
+				preparedStatement.close();
+				connection.close();
+				throw new DAOException("Invalid employee Id : "+employeeId);
+			}
+
+			int id;
+			String name;
+			int designationCode;
+			String title;
+			java.sql.Date dateOfBirth;
+			String gender;
+			boolean isIndian;
+			BigDecimal basicSalary;
+			String panNumber;
+			String aadharCardNumber;
+	
+			
+			id=resultSet.getInt("id");
+				name=resultSet.getString("name").trim();
+				designationCode=resultSet.getInt("designation_code");
+				title=resultSet.getString("title").trim();
+				dateOfBirth=resultSet.getDate("date_of_birth");
+				gender=resultSet.getString("gender");
+				isIndian=resultSet.getBoolean("is_indian");
+				basicSalary=resultSet.getBigDecimal("basic_salary");
+				panNumber=resultSet.getString("pan_number").trim();
+				aadharCardNumber=resultSet.getString("aadhar_card_number").trim();
+
+
+			employeeDTO.setEmployeeId("A"+id);
+			employeeDTO.setName(name);
+			employeeDTO.setDesignationCode(designationCode);
+			employeeDTO.setDesignation(title);
+			employeeDTO.setDateOfBirth(dateOfBirth);
+			employeeDTO.setGender(gender);
+			employeeDTO.setIsIndian(isIndian);
+			employeeDTO.setBasicSalary(basicSalary);
+			employeeDTO.setPANNumber(panNumber);
+			employeeDTO.setAadharCardNumber(aadharCardNumber);
+
+
+			resultSet.close();
+			preparedStatement.close();
+			connection.close();
+		}
+		catch(Exception exception)
+		{
+			throw new DAOException(exception.getMessage());
+		}
+		return employeeDTO;
+	}
+
 
 }
