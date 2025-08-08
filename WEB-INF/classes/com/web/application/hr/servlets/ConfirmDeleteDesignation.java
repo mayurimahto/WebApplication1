@@ -135,7 +135,7 @@ public class ConfirmDeleteDesignation extends HttpServlet
 	{
 		try
 		{
-			//code from DesignationView.java
+			//code from EmployeeView.java
 
 			DesignationDAO designationDAO;
 			designationDAO=new DesignationDAO();
