@@ -118,4 +118,14 @@
 	<servlet-name>AddEmployee</servlet-name>
 	<url-pattern>/addEmployee</url-pattern>
 </servlet-mapping>
+
+<servlet>
+	<servlet-name>ConfirmDeleteEmployee</servlet-name>
+	<servlet-class>com.web.application.hr.servlets.ConfirmDeleteEmployee</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>ConfirmDeleteEmployee</servlet-name>
+	<url-pattern>/confirmDeleteEmployee</url-pattern>
+</servlet-mapping>
 </web-app>
