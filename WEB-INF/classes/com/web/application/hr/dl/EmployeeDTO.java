@@ -8,7 +8,6 @@ public class EmployeeDTO implements java.io.Serializable, Comparable<EmployeeDTO
 	private String name;
 	private int designationCode;
 	private String designation;
-	private String title;
 	private java.util.Date dateOfBirth;
 	private String gender;
 	private boolean isIndian;
@@ -22,7 +21,6 @@ public class EmployeeDTO implements java.io.Serializable, Comparable<EmployeeDTO
 		this.name="";
 		this.designationCode=0;
 		this.designation="";
-		this.title="";
 		this.dateOfBirth=null;
 		this.gender="";
 		this.isIndian=false;
@@ -69,16 +67,6 @@ public class EmployeeDTO implements java.io.Serializable, Comparable<EmployeeDTO
 	public java.lang.String getDesignation()
 	{
 		return this.designation;
-	}
-
-	public void setTitle(java.lang.String title)
-	{
-		this.title=title;
-	}
-	
-	public java.lang.String getTitle()
-	{
-		return this.title;
 	}
 
 	public void setDateOfBirth(java.util.Date dateOfBirth)
