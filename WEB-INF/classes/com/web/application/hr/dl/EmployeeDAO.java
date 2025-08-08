@@ -263,7 +263,7 @@ public class EmployeeDAO
 				panNumber=resultSet.getString("pan_number").trim();
 				aadharCardNumber=resultSet.getString("aadhar_card_number").trim();
 
-
+			employeeDTO=new EmployeeDTO();
 			employeeDTO.setEmployeeId("A"+id);
 			employeeDTO.setName(name);
 			employeeDTO.setDesignationCode(designationCode);

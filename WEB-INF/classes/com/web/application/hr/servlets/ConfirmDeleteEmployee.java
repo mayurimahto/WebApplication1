@@ -128,7 +128,7 @@ public class ConfirmDeleteEmployee extends HttpServlet
 				pw.println("</div>");
 				pw.println("<!--Main container ends here-->");
 
-				pw.println("<form id='cancelDeletionForm' action='/WebApplication1/designationsView'>");
+				pw.println("<form id='cancelDeletionForm' action='/WebApplication1/employeesView'>");
 				pw.println("</form>");
 
 				pw.println("</body>");
@@ -158,8 +158,6 @@ public class ConfirmDeleteEmployee extends HttpServlet
 	{
 
 		//code from EmployeesView.java
-
-
 		try
 		{
 		List<EmployeeDTO>employees=new EmployeeDAO().getAll();
@@ -355,6 +353,5 @@ pw.println("</html>");
 		{
 			System.out.println(exception.getMessage());
 		}
-
 	}
 }
