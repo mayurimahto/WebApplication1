@@ -40,6 +40,7 @@ public class AddEmployee extends HttpServlet
 				boolean panNumberExists=employeeDAO.panNumberExists(panNumber);
 				boolean aadharCardNumberExists=employeeDAO.aadharCardNumberExists(aadharCardNumber);
 				if(designationCodeExists==false || panNumberExists==true || aadharCardNumberExists==true)
+				{
 				//send back form with proper error message
 				//copy code of GetEmployeeAddForm with few changes
 				//add form resent because of validation problems
@@ -402,24 +403,19 @@ pw.println("<form action='/WebApplication1/employeesView' id='cancelAdditionForm
 pw.println("</form>");
 pw.println("</body>");
 pw.println("</html>");
+			
+				}
 
+				else
+				{
 
-
- 
-			}
-			catch(DAOException daoException)
-			{
-				System.out.println(daoException.getMessage());
-			}
-
-
-			EmployeeDTO employee=new EmployeeDTO();
-			employee.setName(name);
-			employee.setDesignationCode(designationCode);
-			employee.setDateOfBirth(dateOfBirth);
-			employee.setGender(gender);
-			employee.setIsIndian(isIndian.equals("Y"));
-			employee.setBasicSalary(basicSalary);
+					EmployeeDTO employee=new EmployeeDTO();
+					employee.setName(name);
+					employee.setDesignationCode(designationCode);
+					employee.setDateOfBirth(dateOfBirth);
+					employee.setGender(gender);
+					employee.setIsIndian(isIndian.equals("Y"));
+					employee.setBasicSalary(basicSalary);
 			employee.setPANNumber(panNumber);
 			employee.setAadharCardNumber(aadharCardNumber);
 
@@ -496,6 +492,18 @@ pw.println("</html>");
 				//recreate form with error message
 				//and send back the page
 			}
+		
+
+	
+				}
+
+ 
+			}
+			catch(DAOException daoException)
+			{
+				System.out.println(daoException.getMessage());
+			}
+
 		}
 		catch(Exception exception)
 		{
