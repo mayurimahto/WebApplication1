@@ -128,4 +128,14 @@
 	<servlet-name>ConfirmDeleteEmployee</servlet-name>
 	<url-pattern>/confirmDeleteEmployee</url-pattern>
 </servlet-mapping>
+
+<servlet>
+	<servlet-name>DeleteEmployee</servlet-name>
+	<servlet-class>com.web.application.hr.servlets.DeleteEmployee</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>DeleteEmployee</servlet-name>
+	<url-pattern>/deleteEmployee</url-pattern>
+</servlet-mapping>
 </web-app>
