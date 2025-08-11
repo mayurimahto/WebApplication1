@@ -287,5 +287,90 @@ public class EmployeeDAO
 		return employeeDTO;
 	}
 
+	public void update(EmployeeDTO employee) throws DAOException
+	{
+		try
+		{
+			String employeeId=employee.getEmployeeId();
+			int actualEmployeeId=0;
+			try
+			{
+				actualEmployeeId=Integer.parseInt(employeeId.substring(1));
+			}
+			catch(Exception exception)
+			{
+				throw new DAOException("Invalid employee id : "+employeeId);
+			}
+
+			Connection connection=DAOConnection.getConnection();
+			PreparedStatement preparedStatement;
+			preparedStatement=connection.prepareStatement("select gender from employee where employee_id=?");
+			preparedStatement.setInt(1,actualEmployeeId);
+			ResultSet resultSet=preparedStatement.executeQuery();
+			if(resultSet.next()==false)
+			{
+				resultSet.close();
+				preparedStatement.close();
+				connection.close();
+				throw new DAOException("Invalid employee id : "+employeeId);
+			}
+			resultSet.close();
+			preparedStatement.close();
+			
+			String panNumber=employee.getPANNumber();
+			preparedStatement=connection.prepareStatement("select id from employee where pan_number=? and employee_id<>?");
+			preparedStatement.setString(1,panNumber);
+			preparedStatement.setInt(2,actualEmployeeId);
+			resultSet=preparedStatement.executeQuery();
+			if(resultSet.next())
+			{
+				resultSet.close();
+				preparedStatement.close();
+				connection.close();
+				throw new DAOException("PAN Number : "+panNumber+" exists");
+			}
+			resultSet.close();
+			preparedStatement.close();
+
+			String aadharCardNumber=employee.getAadharCardNumber();
+			preparedStatement=connection.prepareStatement("select id from employee where aadhar_card_number=? and employee_id<>?");
+			preparedStatement.setString(1, aadharCardNumber);
+			preparedStatement.setInt(2,actualEmployeeId);
+			resultSet=preparedStatement.executeQuery();
+			if(resultSet.next())
+			{
+				resultSet.close();
+				preparedStatement.close();
+				connection.close();
+				throw new DAOException("Aadhar Card Number : "+aadharCardNumber+" exists");
+			}
+			resultSet.close();
+			preparedStatement.close();
+
+			preparedStatement=connection.prepareStatement("update employee set name=?,designation_code=?,date_of_birth=?,gender=?,is_indian=?,basic_salary=?,pan_number=?,aadhar_card_number=? where employee_id=?");
+
+			preparedStatement.setString(1, employee.getName());
+			preparedStatement.setInt(2, employee.getDesignationCode());
+			java.util.Date dateOfBirth=employee.getDateOfBirth();
+			java.sql.Date sqlDate=new java.sql.Date(dateOfBirth.getYear(), dateOfBirth.getMonth(),dateOfBirth.getDate());
+			preparedStatement.setDate(3, sqlDate);
+			preparedStatement.setString(4, employee.getGender());
+			preparedStatement.setBoolean(5, employee.getIsIndian());
+			preparedStatement.setBigDecimal(6, employee.getBasicSalary());
+			preparedStatement.setString(7, panNumber);
+			preparedStatement.setString(8, aadharCardNumber);
+			preparedStatement.setInt(9, actualEmployeeId);
+
+			preparedStatement.executeUpdate();
+			preparedStatement.close();
+			connection.close();
+			
+			
+		}
+		catch(SQLException sqlException)
+		{
+			throw new DAOException(sqlException.getMessage());
+		}
+	}
 
 }
