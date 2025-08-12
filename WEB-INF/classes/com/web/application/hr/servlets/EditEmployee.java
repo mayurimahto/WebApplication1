@@ -23,7 +23,7 @@ public class EditEmployee extends HttpServlet
 			}
 			catch(DAOException daoException)
 			{
-				//sendBackView(response);
+				sendBackView(response);
 				return;
 			}
 
@@ -367,7 +367,7 @@ pw.println("</tr>");
 pw.println("");
 pw.println("<tr>");
 pw.println("<td>");
-pw.println("<button type='submit'>Add</button>");
+pw.println("<button type='submit'>Update</button>");
 pw.println("</td>");
 pw.println("<td>");
 pw.println("<button type='Button' onclick='cancelUpdate()'>Cancel</button>");
