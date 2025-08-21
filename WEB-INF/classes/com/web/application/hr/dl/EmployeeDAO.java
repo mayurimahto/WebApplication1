@@ -373,4 +373,37 @@ public class EmployeeDAO
 		}
 	}
 
+	
+	public boolean employeeIdExists(String employeeId) throws DAOException
+	{
+		boolean exists=false;
+		int actualEmployeeId=0;
+		try
+		{
+			actualEmployeeId=Integer.parseInt(employeeId.substring(1));
+		}
+		catch(Exception exception)
+		{
+			return false;
+		}
+	
+		try
+		{
+			Connection connection=DAOConnection.getConnection();
+			PreparedStatement preparedStatement;
+			preparedStatement=connection.prepareStatement("select gender from employee where id=?");
+			preparedStatement.setInt(1,actualEmployeeId);
+			ResultSet resultSet=preparedStatement.executeQuery();
+			exists=resultSet.next();
+			resultSet.close();
+			preparedStatement.close();
+			connection.close();
+		}
+		catch(Exception exception)
+		{
+			throw new DAOException(exception.getMessage());
+		}
+		return exists;
+	}
+
 }
