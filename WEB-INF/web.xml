@@ -148,4 +148,14 @@
 	<servlet-name>EditEmployee</servlet-name>
 	<url-pattern>/editEmployee</url-pattern>
 </servlet-mapping>
+
+<servlet>
+	<servlet-name>UpdateEmployee</servlet-name>
+	<servlet-class>com.web.application.hr.servlets.UpdateEmployee</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>UpdateEmployee</servlet-name>
+	<url-pattern>/updateEmployee</url-pattern>
+</servlet-mapping>
 </web-app>
