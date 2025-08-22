@@ -31,7 +31,7 @@ public class UpdateEmployee extends HttpServlet
 			//validations applied for check
 			//1. designationCode is correct
 			//2. PAN Number should not exist
-			//3. Aadhar Card Number should not exist
+			//3. Aadhar Card Number should not exists
 
 
 			DesignationDAO designationDAO=new DesignationDAO();
@@ -39,7 +39,7 @@ public class UpdateEmployee extends HttpServlet
 			try
 			{
 
-					if(employeeDAO.employeeIdExists(employeeId)==false)
+				if(employeeDAO.employeeIdExists(employeeId)==false)
 	{
 		sendBackView(response);
 		return;
@@ -453,12 +453,12 @@ pw.println("<form action='/WebApplication1/employeesView' id='cancelUpdateForm'>
 pw.println("</form>");
 pw.println("</body>");
 pw.println("</html>");
-return; //edit form resent because of problems
-}	
-}catch(DAOException daoException)
-{
-	System.out.println(daoException);
-}			
+ //edit form resent because of problems
+
+				}
+				else
+				{
+			
 
 
 					EmployeeDTO employee=new EmployeeDTO();
@@ -534,14 +534,21 @@ return; //edit form resent because of problems
 			pw.println("</body>");
 			pw.println("</html>");
 
+				}
+				catch(DAOException daoException)
+				{
+					//recreate form with error message
+					//and send back the page
+					System.out.println(daoException);
+				}
+		
 			}
-			catch(DAOException daoException)
+ 			
+				
+			}catch(DAOException daoException)
 			{
-				//recreate form with error message
-				//and send back the page
+				System.out.println(daoException);
 			}
-
- 
 
 		}
 		catch(Exception exception)

@@ -187,6 +187,9 @@ pw.println("<div style='height:65vh;margin-left:105px;margin-right:5px;margin-bo
 pw.println("<h2>Employee (Edit Module)</h2>");
 pw.println("");
 pw.println("<form method='post' action='/WebApplication1/updateEmployee' onsubmit='return validateForm(this)'>");
+
+pw.println("<input type='hidden' id='employeeId' name='employeeId' value='"+employeeId+"'>");
+
 pw.println("");
 pw.println("");
 pw.println("<table>");

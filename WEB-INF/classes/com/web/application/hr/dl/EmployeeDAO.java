@@ -304,7 +304,7 @@ public class EmployeeDAO
 
 			Connection connection=DAOConnection.getConnection();
 			PreparedStatement preparedStatement;
-			preparedStatement=connection.prepareStatement("select gender from employee where employee_id=?");
+			preparedStatement=connection.prepareStatement("select gender from employee where id=?");
 			preparedStatement.setInt(1,actualEmployeeId);
 			ResultSet resultSet=preparedStatement.executeQuery();
 			if(resultSet.next()==false)
@@ -318,7 +318,7 @@ public class EmployeeDAO
 			preparedStatement.close();
 			
 			String panNumber=employee.getPANNumber();
-			preparedStatement=connection.prepareStatement("select id from employee where pan_number=? and employee_id<>?");
+			preparedStatement=connection.prepareStatement("select id from employee where pan_number=? and id<>?");
 			preparedStatement.setString(1,panNumber);
 			preparedStatement.setInt(2,actualEmployeeId);
 			resultSet=preparedStatement.executeQuery();
@@ -333,7 +333,7 @@ public class EmployeeDAO
 			preparedStatement.close();
 
 			String aadharCardNumber=employee.getAadharCardNumber();
-			preparedStatement=connection.prepareStatement("select id from employee where aadhar_card_number=? and employee_id<>?");
+			preparedStatement=connection.prepareStatement("select id from employee where aadhar_card_number=? and id<>?");
 			preparedStatement.setString(1, aadharCardNumber);
 			preparedStatement.setInt(2,actualEmployeeId);
 			resultSet=preparedStatement.executeQuery();
@@ -347,7 +347,7 @@ public class EmployeeDAO
 			resultSet.close();
 			preparedStatement.close();
 
-			preparedStatement=connection.prepareStatement("update employee set name=?,designation_code=?,date_of_birth=?,gender=?,is_indian=?,basic_salary=?,pan_number=?,aadhar_card_number=? where employee_id=?");
+			preparedStatement=connection.prepareStatement("update employee set name=?,designation_code=?,date_of_birth=?,gender=?,is_indian=?,basic_salary=?,pan_number=?,aadhar_card_number=? where id=?");
 
 			preparedStatement.setString(1, employee.getName());
 			preparedStatement.setInt(2, employee.getDesignationCode());
