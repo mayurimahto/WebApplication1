@@ -488,7 +488,7 @@ public class EmployeeDAO
 				resultSet.close();
 				preparedStatement.close();
 				connection.close();
-				throw new DAOException("Invalid PAN number : "+aadharCardNumber);
+				throw new DAOException("Invalid Aadhar card number : "+aadharCardNumber);
 			}
 			int id;
 			String name;
